@@ -1,5 +1,5 @@
 image:
-  repository: registry.ivanchenko.io/library/subtitle-player
+  repository: registry.ivanchenko.io/library/subtitles-player
   pullPolicy: IfNotPresent
   tag: "main"
 
