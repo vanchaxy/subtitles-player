@@ -46,6 +46,9 @@ input[type="file"] {
   background-color: #121216;
 }
 .follow-btn {
+    position: absolute;
+  bottom: 5%;
+  right: 5%;
   height: 10vh;
   line-height: 12vh;
   width: 10vh;
@@ -93,11 +96,7 @@ input[type="file"] {
   display: none;
   /* Safari and Chrome */
 }
-.follow-btn {
-  position: absolute;
-  bottom: 5%;
-  right: 5%;
-}
+
 .current.subtitle {
   color: white;
   background-color: rgba(61, 61, 61, 0.507);
@@ -127,14 +126,7 @@ input[type="file"] {
   width: max-content;
   max-width: 80vw;
 }
-.translation-toggle-btn {
-  width: 20vw;
-  height: 5vw;
-  font-size: 2.5vw;
-  color: white;
-  border-radius: 15px;
-  background-color: #23232d;
-}
+
 .current.word {
   background-color: rgb(53, 53, 53);
   border-radius: 5px;
@@ -147,8 +139,22 @@ button:disabled {
 div.buttons-bar button {
   border-radius: 50%;
   font-weight: 900;
-  font-size: 3vw;
-  height: 9vw;
-  width: 9vw;
-  margin: 0.5vw;
+}
+
+@media (min-width: 1201px){
+  div.buttons-bar button {
+      font-size: 1.5vw;
+      height: 4.5vw;
+      width: 4.5vw;
+      margin: 0.25vw;
+ }
+}
+
+@media (max-width: 1200px){
+  div.buttons-bar button {
+      font-size: 3vw;
+      height: 9vw;
+      width: 9vw;
+      margin: 0.5vw;
+ }
 }
