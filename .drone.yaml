@@ -12,6 +12,7 @@ steps:
         from_secret: REGISTRY_PASSWORD
       registry: registry.ivanchenko.io
       repo: registry.ivanchenko.io/library/${DRONE_REPO_NAME}
+      use_cache: true
       cache_from: registry.ivanchenko.io/library/${DRONE_REPO_NAME}:main
       tags:
         - ${DRONE_BRANCH/\//-}
