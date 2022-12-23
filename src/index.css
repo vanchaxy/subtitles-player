@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #121216;
+}
+#root {
+  height: 100vh;
+}
+.subtitles-player {
+  height: 100%;
+  background-color: #23232d;
+  display: flex;
+  flex-direction: column;
+}
+.subtitles-selector {
+  height: 5%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+}
+input[type="file"] {
+  display: none;
+}
+.file-upload {
+  width: 10%;
+  text-align: center;
+  font-size: 3vh;
+  cursor: pointer;
+  color: #92929d;
+  display: flex;
+  align-items: center;
+}
+.file-name {
+  text-align: center;
+  display: inline-block;
+  color: white;
+  font-size: 3vh;
+  width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.subtitles-container {
+  height: 82%;
+  background-color: #121216;
+}
+.follow-btn {
+  height: 10vh;
+  line-height: 12vh;
+  width: 10vh;
+  font-size: 8vh;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 1px solid #121216;
+  background-color: white;
+  color: #121216;
+  text-align: center;
+  cursor: pointer;
+}
+.progress-bar {
+  margin: 2%;
+  text-align: center;
+}
+.formatted-time {
+  color: #92929d;
+  display: inline-block;
+}
+.slider {
+  display: inline-block;
+  width: 75%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.buttons-bar {
+  text-align: center;
+  margin-top: 3vh;
+}
+.no-scrollbars {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  &::-webkit-scrollbar {
+    width: 1px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+}
+.no-scrollbars::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+.follow-btn {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+.current.subtitle {
+  color: white;
+  background-color: rgba(61, 61, 61, 0.507);
+  border-radius: 30px;
+}
+.subtitle {
+  margin-left: 1vw;
+  margin-right: 1vw;
+  white-space: pre-line;
+  font-weight: 900;
+  font-size: 35px;
+  text-align: center;
+  color: #c2c2ca;
+  padding: 10px;
+}
+.sutitle-translation {
+  color: #23232d;
+  padding: 1%;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 3%;
+  background-color: gray;
+  white-space: pre-line;
+  font-weight: 900;
+  font-size: 25px;
+  text-align: center;
+  width: max-content;
+  max-width: 80vw;
+}
+.translation-toggle-btn {
+  width: 20vw;
+  height: 5vw;
+  font-size: 2.5vw;
+  color: white;
+  border-radius: 15px;
+  background-color: #23232d;
+}
+.current.word {
+  background-color: rgb(53, 53, 53);
+  border-radius: 5px;
+}
+
+button:disabled {
+  display: none;
+}
+
+div.buttons-bar button {
+  border-radius: 50%;
+  font-weight: 900;
+  font-size: 3vw;
+  height: 9vw;
+  width: 9vw;
+  margin: 0.5vw;
+}
