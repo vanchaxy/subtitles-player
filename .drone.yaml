@@ -3,9 +3,8 @@ type: kubernetes
 name: default
 
 steps:
-  - name: docker
-    image: thegeeklab/drone-docker-buildx
-    privileged: true
+  - name: build base
+    image: plugins/docker
     settings:
       username:
         from_secret: REGISTRY_USERNAME
@@ -13,11 +12,29 @@ steps:
         from_secret: REGISTRY_PASSWORD
       registry: registry.ivanchenko.io
       repo: registry.ivanchenko.io/library/${DRONE_REPO_NAME}
-      purge: true
-      compress: true
       build_args: BUILDKIT_INLINE_CACHE=1
-      use_cache: true
+      target: build
       cache_from:
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-${DRONE_BRANCH/\//-}
+      tags:
+        - build-${DRONE_BRANCH/\//-}
+        - build-${DRONE_BRANCH/\//-}-${DRONE_COMMIT:0:8}
+      mtu: 1000
+
+  - name: build nginx
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
+      registry: registry.ivanchenko.io
+      repo: registry.ivanchenko.io/library/${DRONE_REPO_NAME}
+      build_args: BUILDKIT_INLINE_CACHE=1
+      cache_from:
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-${DRONE_BRANCH/\//-}
         - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:main
         - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:${DRONE_BRANCH/\//-}
       tags:
