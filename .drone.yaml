@@ -5,6 +5,7 @@ name: default
 steps:
   - name: docker
     image: thegeeklab/drone-docker-buildx
+    privileged: true
     settings:
       username:
         from_secret: REGISTRY_USERNAME
