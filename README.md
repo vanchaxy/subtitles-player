@@ -1,2 +1,2 @@
-# subtitles-player
+# Subtitles player
 Player for subtitles with translation support
