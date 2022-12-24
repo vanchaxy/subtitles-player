@@ -3,43 +3,41 @@ type: kubernetes
 name: default
 
 steps:
-  - name: build base
+  - name: Build base image
     image: plugins/docker
     settings:
-      username:
-        from_secret: REGISTRY_USERNAME
-      password:
-        from_secret: REGISTRY_PASSWORD
       registry: registry.ivanchenko.io
       repo: registry.ivanchenko.io/library/${DRONE_REPO_NAME}
-      build_args: BUILDKIT_INLINE_CACHE=1
       target: build
       cache_from:
-        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
         - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-${DRONE_BRANCH/\//-}
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
       tags:
         - build-${DRONE_BRANCH/\//-}
         - build-${DRONE_BRANCH/\//-}-${DRONE_COMMIT:0:8}
-      mtu: 1000
-
-  - name: build nginx
-    image: plugins/docker
-    settings:
       username:
         from_secret: REGISTRY_USERNAME
       password:
         from_secret: REGISTRY_PASSWORD
+      mtu: 1000
+
+  - name: Build production image
+    image: plugins/docker
+    settings:
       registry: registry.ivanchenko.io
       repo: registry.ivanchenko.io/library/${DRONE_REPO_NAME}
-      build_args: BUILDKIT_INLINE_CACHE=1
       cache_from:
-        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
         - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-${DRONE_BRANCH/\//-}
-        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:main
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:build-main
         - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:${DRONE_BRANCH/\//-}
+        - registry.ivanchenko.io/library/${DRONE_REPO_NAME}:main
       tags:
         - ${DRONE_BRANCH/\//-}
         - ${DRONE_BRANCH/\//-}-${DRONE_COMMIT:0:8}
+      username:
+        from_secret: REGISTRY_USERNAME
+      password:
+        from_secret: REGISTRY_PASSWORD
       mtu: 1000
 
   - name: helm
